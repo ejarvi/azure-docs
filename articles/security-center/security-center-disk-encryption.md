@@ -138,10 +138,16 @@ Press **ENTER**. You should see the name of the virtual machine you want to encr
 
 ![PowerShell output](./media/security-center-disk-encryption/security-center-disk-encryption-fig7.png)
 
-There are two ways you can run the encryption command to encrypt the virtual machine. The first method is to type the following command in the PowerShell ISE console:
+There are two ways you can run the encryption command to encrypt the virtual machine. The first method is to type the following command in the PowerShell ISE console (corresponding to whether or not you are targeting a Windows or Linux VM type):
 
+Windows VM: 
 ~~~
 Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMName $vmName -AadClientID $aadClientID -AadClientSecret $aadClientSecret -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $keyVaultResourceId
+~~~
+
+Linux VM: Please note that when targeting a supported Linux VM that satisfies all ![prerequisites](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption#prerequisites), a -VolumeType parameter of All, OS, or Data must be specified.
+~~~
+Set-AzureRmVMDiskEncryptionExtension -VolumeType All -ResourceGroupName $resourceGroupName -VMName $vmName -AadClientID $aadClientID -AadClientSecret $aadClientSecret -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $keyVaultResourceId 
 ~~~
 
 After typing this command press **ENTER**.
