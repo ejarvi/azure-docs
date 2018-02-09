@@ -141,7 +141,7 @@ Press **ENTER**. You should see the name of the virtual machine you want to encr
 There are two methods to run the encryption command to encrypt all drives on the virtual machine. The first method is to type the following command in the PowerShell ISE console:
 
 ~~~
-Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMName $vmName -AadClientID $aadClientID -AadClientSecret $aadClientSecret -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $keyVaultResourceId -VolumeType All
+Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMName $vmName -AadClientID $aadClientID -AadClientSecret (ConvertTo-SecureString -String $aadClientSecret -AsPlainText -Force) -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $keyVaultResourceId -VolumeType All
 ~~~
 
 After typing this command press **ENTER**.
